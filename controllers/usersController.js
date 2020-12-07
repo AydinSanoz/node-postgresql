@@ -57,15 +57,13 @@ exports.show_update_user_form = async (req, res) => {
 	} catch (err) {console.log("edit Error", err)}
 };
 
-exports.update_user =  ((req, res)=>{
+exports.update_user =  async (req, res)=>{
   const id = req.params.id
   const firstName = req.body.firstName
   const lastName = req.body.lastName
   try {
-    UserModel.update({firstName,lastName},{where:{id:id}})
+    await UserModel.update({firstName,lastName},{where:{id:id}})
     res.redirect("/users")
-  } catch (err) {
-    console.log("update Error", err) 
-  }
+  } catch (err) {console.log("update Error", err)}
   
-})
+}
